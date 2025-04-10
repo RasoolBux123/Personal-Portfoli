@@ -1,0 +1,21 @@
+<!-- 📁 Projects Section -->
+<div class="container my-5">
+    <h2 class="text-center text-success mb-4">💼 My Projects</h2>
+    <div class="row">
+      {% for proj in projs %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm border-0" style="background-color: #f0f9ff;">
+          <img src="{{ proj.image.url }}" class="card-img-top" alt="{{ proj.title }}" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-primary">{{ proj.title }}</h5>
+            <p class="card-text text-muted">{{ proj.description }}</p>
+            {% if proj.link %}
+            <a href="{{ proj.link }}" target="_blank" class="btn btn-outline-info w-100">🔗 Visit Project</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Contact Me{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+  <h1 class="text-center text-primary mb-4">📩 Contact Me</h1>
+
+  <!-- 📝 Contact Form -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form method="POST" class="p-4 shadow-lg rounded bg-light">
+        {% csrf_token %}
+        
+        <!-- Name Field -->
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          {{ form.name }}  <!-- Render the form field directly -->
+          {% if form.name.errors %}
+            <div class="text-danger">
+              {% for error in form.name.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Email Field -->
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          {{ form.email }}  <!-- Render the form field directly -->
+          {% if form.email.errors %}
+            <div class="text-danger">
+              {% for error in form.email.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Message Field -->
+        <div class="mb-3">
+          <label class="form-label">Message</label>
+          {{ form.text }}  <!-- Render the form field directly -->
+          {% if form.text.errors %}
+            <div class="text-danger">
+              {% for error in form.text.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success w-100">Send Message</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 🔗 Social Links Section -->
+<div class="container my-5">
+  <h2 class="text-center text-info mb-3">🌐 Find Me Online</h2>
+  <div class="row justify-content-center">
+    {% for link in links %}
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 shadow-sm text-center bg-white border-0">
+        <h5 class="text-dark">{{ link.platform }}</h5>
+        <a href="{{ link.url }}" target="_blank" class="text-primary">{{ link.url }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
